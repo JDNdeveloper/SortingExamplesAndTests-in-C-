@@ -15,16 +15,23 @@ namespace SortingExampleTest
 		{
 			INSERTION, SELECTION
 		};
+
+		const SortType FIRST_SORT_TYPE = INSERTION;
+		const SortType LAST_SORT_TYPE = SELECTION;
+
 	public:
 		
-		TEST_METHOD(InsertionSortTest)
+		TEST_METHOD(RunAllSorts)
 		{
-			// TODO: InsertionSort Code here
+			for (int sortType = FIRST_SORT_TYPE; sortType != LAST_SORT_TYPE; sortType++)
+			{
+				runProperSort((SortType) sortType);
+			}
 		}
 
-		TEST_METHOD(SelectionSortTest)
+		void runProperSort(SortType sortType)
 		{
-			// TODO: SelectionSort Code here
+			
 		}
 
 	};
