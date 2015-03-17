@@ -1,9 +1,7 @@
 #include "stdafx.h"
 #include "InsertionSort.h"
+#include <algorithm>
 
-int* InsertionSort::sort(int theArray[]) {
-	int* a1 = new int[2];
-	a1[0] = 2;
-	a1[1] = 3;
-	return a1;
+void InsertionSort::sort(std::vector<int>* theArray) {
+	std::sort(theArray->begin(), theArray->end());
 }

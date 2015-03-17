@@ -1,12 +1,13 @@
-#ifndef INSERTION_SORT_H
-#define INSERTION_SORT_H
+#pragma once
 
 #include "stdafx.h"
+#include <vector>
 
-class InsertionSort {
+class InsertionSort 
+{
 	public:
-		InsertionSort() {}
-		static int* sort(int theArray[]);
-};
+		InsertionSort() {};
+		~InsertionSort() {};
 
-#endif
+		static void sort(std::vector<int>* theArray);
+};

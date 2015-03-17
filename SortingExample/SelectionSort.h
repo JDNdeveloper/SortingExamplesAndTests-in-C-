@@ -1,10 +1,16 @@
 #pragma once
+
+#include "stdafx.h"
+#include <vector>
+
 class SelectionSort
 {
-public:
-	SelectionSort();
-	~SelectionSort();
+	private:
+		static void swap(std::vector<int>* theArray, int pos1, int pos2);
+	public:
+		SelectionSort() {};
+		~SelectionSort() {};
 
-	static int getThree();
+		static void sort(std::vector<int>* theArray);
 };
 
