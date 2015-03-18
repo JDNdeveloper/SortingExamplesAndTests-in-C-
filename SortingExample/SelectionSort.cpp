@@ -8,11 +8,11 @@ void SelectionSort::sort(std::vector<int>* theArray) {
 	
 	int lowPos = 0;
 
-	for (int i = 0; i < theArray->size(); i++) {
+	for (unsigned i = 0; i < theArray->size(); i++) {
 
 		lowPos = i;
 
-		for (int j = i + 1; j < theArray->size(); j++) {
+		for (unsigned j = i + 1; j < theArray->size(); j++) {
 			if (theArray->at(j) < theArray->at(lowPos))
 				lowPos = j;
 		}

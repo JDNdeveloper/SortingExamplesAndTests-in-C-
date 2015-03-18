@@ -86,6 +86,7 @@
     <ClInclude Include="..\SortingExample\SelectionSort.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="SupportFile.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>

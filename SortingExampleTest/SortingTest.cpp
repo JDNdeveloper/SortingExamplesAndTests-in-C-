@@ -6,6 +6,7 @@
 
 #include "../SortingExample/SelectionSort.h"
 #include "../SortingExample/InsertionSort.h"
+#include "SupportFile.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -22,9 +23,12 @@ namespace SortingExampleTest
 		const SortType FIRST_SORT_TYPE = INSERTION;
 		const SortType LAST_SORT_TYPE = SELECTION;
 
+		const int NUMBER_OF_TEST_INPUTS = 100;
+		const int NUMBER_OF_ARRAY_RANDOMIZES = 50;
+
 		const int SIZE = 100;
-		const int UPPER_BOUND = 10000;
-		const int LOWER_BOUND = -10000;
+		const int LOWER_BOUND = -100000;
+		const int UPPER_BOUND = 100000;
 
 		bool runProperSort(SortType sortType, std::vector<int>* theArray)
 		{
@@ -94,25 +98,37 @@ namespace SortingExampleTest
 
 	public:
 		
-		TEST_METHOD(RunAllSorts)
+		TEST_METHOD(TestSorts)
 		{
 			std::vector<int>* theArray = new std::vector<int>(SIZE);
 
-			generateArray(theArray, SIZE);
+			for (int i = 0; i < NUMBER_OF_TEST_INPUTS; i++)
+			{
+				generateArray(theArray, SIZE);
 
-			std::vector<int>* perfectArray = new std::vector<int>(*theArray);
+				std::vector<int>* perfectArray = new std::vector<int>(*theArray);
 
-			std::sort(perfectArray->begin(), perfectArray->end());
+				std::sort(perfectArray->begin(), perfectArray->end());
 
+				for (int j = 0; j < NUMBER_OF_ARRAY_RANDOMIZES; j++)
+				{
+					randomizeArray(theArray);
+
+					runAllSorts(perfectArray, theArray);
+				}
+
+
+			}
+		}
+
+		void runAllSorts(std::vector<int>* perfectArray, std::vector<int>* theArray) {
 			for (int sortType = FIRST_SORT_TYPE; sortType <= LAST_SORT_TYPE; sortType++)
 			{
-				randomizeArray(theArray);
-
 				//Logger::WriteMessage("Inside of sort loop\n");
 
-				runProperSort((SortType) sortType, theArray);
-				
-				Assert::IsTrue(*perfectArray == *theArray);
+				runProperSort((SortType)sortType, theArray);
+
+				Assert::AreEqual(*perfectArray, *theArray);
 			}
 		}
 

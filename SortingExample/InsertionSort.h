@@ -5,6 +5,8 @@
 
 class InsertionSort 
 {
+	private:
+		static void swap(std::vector<int>* theArray, int pos1, int pos2);
 	public:
 		InsertionSort() {};
 		~InsertionSort() {};
