@@ -3,11 +3,12 @@
 #include "stdafx.h"
 #include <vector>
 
-class InsertionSort 
+class BubbleSort
 {
 	public:
-		InsertionSort() {};
-		~InsertionSort() {};
+		BubbleSort() {};
+		~BubbleSort() {};
 
 		static void sort(std::vector<int>* theArray);
 };
+

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "SelectionSort.h"
+#include "StaticOperations.h"
 #include <algorithm>
 
 void SelectionSort::sort(std::vector<int>* theArray) {
@@ -17,15 +18,8 @@ void SelectionSort::sort(std::vector<int>* theArray) {
 				lowPos = j;
 		}
 
-		swap(theArray, i, lowPos);
+		StaticOperations::swap(theArray, i, lowPos);
 	}
 	
 }
 
-void SelectionSort::swap(std::vector<int>* theArray, int pos1, int pos2) {
-	int num1 = (*theArray)[pos1];
-	int num2 = (*theArray)[pos2];
-
-	(*theArray)[pos1] = num2;
-	(*theArray)[pos2] = num1;
-}

@@ -6,9 +6,12 @@
 
 #include "../SortingExample/SelectionSort.h"
 #include "../SortingExample/InsertionSort.h"
+#include "../SortingExample/BubbleSort.h"
 #include "SupportFile.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+typedef std::vector<int>* pIntVec;
 
 namespace SortingExampleTest
 {
@@ -17,26 +20,38 @@ namespace SortingExampleTest
 	private:
 		enum SortType
 		{
-			INSERTION, SELECTION
+			INSERTION, BUBBLE, SELECTION
 		};
 
 		const SortType FIRST_SORT_TYPE = INSERTION;
 		const SortType LAST_SORT_TYPE = SELECTION;
 
-		const int NUMBER_OF_TEST_INPUTS = 100;
+		const int NUMBER_OF_TEST_INPUTS = 10;
 		const int NUMBER_OF_ARRAY_RANDOMIZES = 50;
 
 		const int SIZE = 100;
 		const int LOWER_BOUND = -100000;
 		const int UPPER_BOUND = 100000;
 
-		bool runProperSort(SortType sortType, std::vector<int>* theArray)
+		bool runProperSort(SortType sortType, pIntVec theArray)
 		{
 			switch (sortType)
 			{
 			case INSERTION:
 				InsertionSort::sort(theArray);
 				break;
+			case BUBBLE:
+				BubbleSort::sort(theArray);
+				break;
+			/*case HEAP:
+				HeapSort::sort(theArray);
+				break;
+			case MERGE:
+				MergeSort::sort(theArray);
+				break;
+			case QUICK:
+				MergeSort::sort(theArray);
+				break;*/
 			case SELECTION:
 				SelectionSort::sort(theArray);
 				break;
@@ -47,7 +62,7 @@ namespace SortingExampleTest
 			return true;
 		}
 
-		void generateArray(std::vector<int>* theArray, int size) {
+		void generateArray(pIntVec theArray, int size) {
 			//below line wiped out all data and made size 0
 
 			theArray->clear();
@@ -67,7 +82,7 @@ namespace SortingExampleTest
 			*/
 		}
 
-		void randomizeArray(std::vector<int>* theArray) {
+		void randomizeArray(pIntVec theArray) {
 
 			//Logger::WriteMessage("Here 1\n");
 
@@ -84,7 +99,7 @@ namespace SortingExampleTest
 			}
 		}
 
-		void swapArrayPositions(std::vector<int>* theArray, int pos1, int pos2) {
+		void swapArrayPositions(pIntVec theArray, int pos1, int pos2) {
 			int num1 = (*theArray)[pos1];
 			int num2 = (*theArray)[pos2];
 
@@ -100,13 +115,13 @@ namespace SortingExampleTest
 		
 		TEST_METHOD(TestSorts)
 		{
-			std::vector<int>* theArray = new std::vector<int>(SIZE);
+			pIntVec theArray = new std::vector<int>(SIZE);
 
 			for (int i = 0; i < NUMBER_OF_TEST_INPUTS; i++)
 			{
 				generateArray(theArray, SIZE);
 
-				std::vector<int>* perfectArray = new std::vector<int>(*theArray);
+				pIntVec perfectArray = new std::vector<int>(*theArray);
 
 				std::sort(perfectArray->begin(), perfectArray->end());
 
@@ -121,19 +136,21 @@ namespace SortingExampleTest
 			}
 		}
 
-		void runAllSorts(std::vector<int>* perfectArray, std::vector<int>* theArray) {
+		void runAllSorts(pIntVec perfectArray, pIntVec theArray) {
 			for (int sortType = FIRST_SORT_TYPE; sortType <= LAST_SORT_TYPE; sortType++)
 			{
 				//Logger::WriteMessage("Inside of sort loop\n");
 
-				runProperSort((SortType)sortType, theArray);
+				pIntVec tempArray = new std::vector<int>(*theArray);
 
-				Assert::AreEqual(*perfectArray, *theArray);
+				runProperSort((SortType)sortType, tempArray);
+
+				Assert::AreEqual(*perfectArray, *tempArray);
 			}
 		}
 
 		TEST_METHOD(TestGenerateArray) {
-			std::vector<int>* v1 = new std::vector<int>(5);
+			pIntVec v1 = new std::vector<int>(5);
 
 			generateArray(v1, 5);
 			
@@ -149,7 +166,7 @@ namespace SortingExampleTest
 		}
 
 		TEST_METHOD(TestRandomizeArray) {
-			std::vector<int>* v1 = new std::vector<int>();
+			pIntVec v1 = new std::vector<int>();
 
 			Logger::WriteMessage("Test Randomize Array:\n");
 
@@ -180,7 +197,7 @@ namespace SortingExampleTest
 
 		/*
 		TEST_METHOD(TestIteratorLoop) {
-			std::vector<int>* v = new std::vector<int>(5);
+			pIntVec v = new std::vector<int>(5);
 
 			int i = 0;
 			for (std::vector<int>::iterator it = v->begin(); it != v->end(); ++it) {

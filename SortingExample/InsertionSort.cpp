@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "InsertionSort.h"
+#include "StaticOperations.h"
 #include <algorithm>
 
 void InsertionSort::sort(std::vector<int>* theArray) {
@@ -11,18 +12,10 @@ void InsertionSort::sort(std::vector<int>* theArray) {
 
 		//order of the terms in this statement matter! otherwise array out of bounds error
 		while (previous >= 0 && theArray->at(previous) > theArray->at(current)) {
-			swap(theArray, current, previous);
+			StaticOperations::swap(theArray, current, previous);
 			previous--;
 			current--;
 		}
 
 	}
-}
-
-void InsertionSort::swap(std::vector<int>* theArray, int pos1, int pos2) {
-	int num1 = (*theArray)[pos1];
-	int num2 = (*theArray)[pos2];
-
-	(*theArray)[pos1] = num2;
-	(*theArray)[pos2] = num1;
 }
