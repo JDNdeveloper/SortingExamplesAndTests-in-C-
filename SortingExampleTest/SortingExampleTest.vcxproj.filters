@@ -24,17 +24,8 @@
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\SortingExample\InsertionSort.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SortingExample\SelectionSort.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
     <ClInclude Include="SupportFile.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SortingExample\BubbleSort.h">
-      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +42,9 @@
       <Filter>Resource Files</Filter>
     </ClCompile>
     <ClCompile Include="..\SortingExample\BubbleSort.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\SortingExample\HeapSort.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>

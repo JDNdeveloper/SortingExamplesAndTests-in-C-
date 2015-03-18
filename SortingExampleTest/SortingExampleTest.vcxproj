@@ -82,9 +82,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\SortingExample\BubbleSort.h" />
-    <ClInclude Include="..\SortingExample\InsertionSort.h" />
-    <ClInclude Include="..\SortingExample\SelectionSort.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SupportFile.h" />
@@ -92,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SortingExample\BubbleSort.cpp" />
+    <ClCompile Include="..\SortingExample\HeapSort.cpp" />
     <ClCompile Include="..\SortingExample\InsertionSort.cpp" />
     <ClCompile Include="..\SortingExample\SelectionSort.cpp" />
     <ClCompile Include="SortingTest.cpp" />

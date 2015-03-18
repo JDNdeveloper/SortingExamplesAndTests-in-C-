@@ -3,10 +3,12 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <time.h>
 
 #include "../SortingExample/SelectionSort.h"
 #include "../SortingExample/InsertionSort.h"
 #include "../SortingExample/BubbleSort.h"
+#include "../SortingExample/HeapSort.h"
 #include "SupportFile.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -20,18 +22,18 @@ namespace SortingExampleTest
 	private:
 		enum SortType
 		{
-			INSERTION, BUBBLE, SELECTION
+			INSERTION, BUBBLE, HEAP, SELECTION
 		};
 
 		const SortType FIRST_SORT_TYPE = INSERTION;
 		const SortType LAST_SORT_TYPE = SELECTION;
 
 		const int NUMBER_OF_TEST_INPUTS = 10;
-		const int NUMBER_OF_ARRAY_RANDOMIZES = 50;
+		const int NUMBER_OF_ARRAY_RANDOMIZES = 10;
 
 		const int SIZE = 100;
-		const int LOWER_BOUND = -100000;
-		const int UPPER_BOUND = 100000;
+		const int LOWER_BOUND = -10000;
+		const int UPPER_BOUND = 10000;
 
 		bool runProperSort(SortType sortType, pIntVec theArray)
 		{
@@ -43,10 +45,10 @@ namespace SortingExampleTest
 			case BUBBLE:
 				BubbleSort::sort(theArray);
 				break;
-			/*case HEAP:
+			case HEAP:
 				HeapSort::sort(theArray);
 				break;
-			case MERGE:
+			/*case MERGE:
 				MergeSort::sort(theArray);
 				break;
 			case QUICK:
@@ -115,6 +117,9 @@ namespace SortingExampleTest
 		
 		TEST_METHOD(TestSorts)
 		{
+			unsigned int time_ui = unsigned int(time(NULL));
+			srand(time_ui);
+
 			pIntVec theArray = new std::vector<int>(SIZE);
 
 			for (int i = 0; i < NUMBER_OF_TEST_INPUTS; i++)
