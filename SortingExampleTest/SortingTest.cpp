@@ -17,6 +17,8 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 typedef std::vector<int>* pIntVec;
 
+//small change
+
 namespace SortingExampleTest
 {
 	TEST_CLASS(SortingTest)
