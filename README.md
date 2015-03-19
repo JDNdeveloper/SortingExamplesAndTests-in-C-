@@ -1,4 +1,5 @@
-Sorting Examples and Tests in C++ (Visual Studio)
+Sorting Examples and Tests in C++ 
+(Visual Studio 2013)
 =============
 
 **Author:** Jayden Navarro
