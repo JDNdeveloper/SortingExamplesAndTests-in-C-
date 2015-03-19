@@ -91,6 +91,8 @@
     <ClCompile Include="..\SortingExample\BubbleSort.cpp" />
     <ClCompile Include="..\SortingExample\HeapSort.cpp" />
     <ClCompile Include="..\SortingExample\InsertionSort.cpp" />
+    <ClCompile Include="..\SortingExample\MergeSort.cpp" />
+    <ClCompile Include="..\SortingExample\QuickSort.cpp" />
     <ClCompile Include="..\SortingExample\SelectionSort.cpp" />
     <ClCompile Include="SortingTest.cpp" />
     <ClCompile Include="stdafx.cpp">

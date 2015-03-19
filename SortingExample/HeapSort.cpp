@@ -14,7 +14,7 @@ void HeapSort::sort(std::vector<int>* theArray) {
 	}
 
 	
-	unsigned i = theArray->size() -1; 
+	unsigned i = theArray->size() - 1; 
 	while (!heap.empty()) {
 		int max = heap.top();
 

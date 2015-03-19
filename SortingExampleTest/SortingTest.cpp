@@ -9,6 +9,8 @@
 #include "../SortingExample/InsertionSort.h"
 #include "../SortingExample/BubbleSort.h"
 #include "../SortingExample/HeapSort.h"
+#include "../SortingExample/MergeSort.h"
+#include "../SortingExample/QuickSort.h"
 #include "SupportFile.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -22,7 +24,7 @@ namespace SortingExampleTest
 	private:
 		enum SortType
 		{
-			INSERTION, BUBBLE, HEAP, SELECTION
+			INSERTION, BUBBLE, HEAP, MERGE, QUICK, SELECTION
 		};
 
 		const SortType FIRST_SORT_TYPE = INSERTION;
@@ -48,12 +50,12 @@ namespace SortingExampleTest
 			case HEAP:
 				HeapSort::sort(theArray);
 				break;
-			/*case MERGE:
+			case MERGE:
 				MergeSort::sort(theArray);
 				break;
 			case QUICK:
-				MergeSort::sort(theArray);
-				break;*/
+				QuickSort::sort(theArray);
+				break;
 			case SELECTION:
 				SelectionSort::sort(theArray);
 				break;
