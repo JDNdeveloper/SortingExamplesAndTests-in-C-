@@ -37,6 +37,8 @@ namespace SortingExampleTest
 		const int LOWER_BOUND = -10000;
 		const int UPPER_BOUND = 10000;
 
+		const int SAMPLE_SIZE = 500;
+
 		bool runProperSort(SortType sortType, pIntVec theArray)
 		{
 			switch (sortType)
@@ -157,49 +159,38 @@ namespace SortingExampleTest
 		}
 
 		TEST_METHOD(TestGenerateArray) {
-			pIntVec v1 = new std::vector<int>(5);
+			for (int j = 0; j < SAMPLE_SIZE; j++) {
+				pIntVec testArray = new std::vector<int>();
 
-			generateArray(v1, 5);
-			
-			Logger::WriteMessage("Test Generate Array:\n");
+				generateArray(testArray, SIZE);
 
-			for (std::vector<int>::iterator it = v1->begin(); it != v1->end(); ++it) {
-				char buffer[33];
-				Logger::WriteMessage(_itoa(*it, buffer, 10));
-				Logger::WriteMessage("\n");
+				Assert::IsTrue(testArray->size() == SIZE, L"Size is incorrect");
+
+				for (int i = 0; i < testArray->size(); i++) {
+					int value = (*testArray)[i];
+					Assert::IsTrue(value <= UPPER_BOUND && value >= LOWER_BOUND, L"Values are not in proper range");
+				}
 			}
-
-			Logger::WriteMessage("End of Test Generate Array\n");
 		}
 
 		TEST_METHOD(TestRandomizeArray) {
-			pIntVec v1 = new std::vector<int>();
+			for (int i = 0; i < SAMPLE_SIZE; i++) {
+				pIntVec testArray = new std::vector<int>();
+				testArray->push_back(5);
+				testArray->push_back(3);
+				testArray->push_back(2);
+				testArray->push_back(7);
+				pIntVec inputArray = new std::vector<int>(*testArray);
 
-			Logger::WriteMessage("Test Randomize Array:\n");
+				randomizeArray(inputArray);
 
-			for (unsigned i = 0; i < 10; i++) {
-				v1->push_back(i);
+				Assert::AreNotEqual(*testArray, *inputArray, L"Arrays are equal");
+
+				std::sort(testArray->begin(), testArray->end());
+				std::sort(inputArray->begin(), inputArray->end());
+
+				Assert::AreEqual(*testArray, *inputArray, L"Arrays are not equal");
 			}
-
-			for (std::vector<int>::iterator it = v1->begin(); it != v1->end(); ++it) {
-				char buffer[33];
-				Logger::WriteMessage(_itoa(*it, buffer, 10));
-				Logger::WriteMessage("\n");
-			}
-
-			Logger::WriteMessage("Finished loading vector\n");
-
-			randomizeArray(v1);
-
-			Logger::WriteMessage("Finished randomizing vector\n");
-
-			for (std::vector<int>::iterator it = v1->begin(); it != v1->end(); ++it) {
-				char buffer[33];
-				Logger::WriteMessage(_itoa(*it, buffer, 10));
-				Logger::WriteMessage("\n");
-			}
-
-			Logger::WriteMessage("End of Test Randomize Array\n");
 		}
 
 		/*
