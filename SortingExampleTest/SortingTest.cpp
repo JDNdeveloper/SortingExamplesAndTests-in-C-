@@ -141,8 +141,10 @@ namespace SortingExampleTest
 					runAllSorts(perfectArray, theArray);
 				}
 
-
+				delete perfectArray;
 			}
+
+			delete theArray;
 		}
 
 		void runAllSorts(pIntVec perfectArray, pIntVec theArray) {
@@ -155,6 +157,8 @@ namespace SortingExampleTest
 				runProperSort((SortType)sortType, tempArray);
 
 				Assert::AreEqual(*perfectArray, *tempArray);
+				
+				delete tempArray;
 			}
 		}
 
@@ -166,10 +170,12 @@ namespace SortingExampleTest
 
 				Assert::IsTrue(testArray->size() == SIZE, L"Size is incorrect");
 
-				for (int i = 0; i < testArray->size(); i++) {
+				for (unsigned i = 0; i < testArray->size(); i++) {
 					int value = (*testArray)[i];
 					Assert::IsTrue(value <= UPPER_BOUND && value >= LOWER_BOUND, L"Values are not in proper range");
 				}
+
+				delete testArray;
 			}
 		}
 
@@ -190,6 +196,9 @@ namespace SortingExampleTest
 				std::sort(inputArray->begin(), inputArray->end());
 
 				Assert::AreEqual(*testArray, *inputArray, L"Arrays are not equal");
+
+				delete testArray;
+				delete inputArray;
 			}
 		}
 
