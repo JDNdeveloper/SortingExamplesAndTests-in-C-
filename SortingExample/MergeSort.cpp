@@ -59,4 +59,6 @@ void MergeSort::merge(std::vector<int>* theArray, const int LEFT, const int RIGH
 	for (int i = LEFT; i <= RIGHT; i++) {
 		(*theArray)[i] =  mergedArray->at(i);
 	}
+
+	delete mergedArray;
 }

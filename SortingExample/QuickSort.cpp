@@ -51,10 +51,13 @@ int QuickSort::partition(std::vector<int>* theArray, const int LEFT, const int R
 	(*theArray)[pos] = pivotValue;
 	pos++;
 
-	for (unsigned i = 0; i < leftPartition->size(); i++) {
+	for (unsigned i = 0; i < rightPartition->size(); i++) {
 		(*theArray)[pos] = rightPartition->at(i);
 		pos++;
 	}
+
+	delete leftPartition;
+	delete rightPartition;
 
 	return pivot;
 }
