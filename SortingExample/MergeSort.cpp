@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "MergeSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 
-void MergeSort::sort(std::vector<int>* theArray) {
+
+void MergeSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 
 	mergeSort(theArray, 0 , theArray->size() - 1);
 }
 
-void MergeSort::mergeSort(std::vector<int>* theArray, const int LEFT, const int RIGHT) {
+void MergeSort::mergeSort(StaticOperations::pIntVec theArray, const int LEFT, const int RIGHT) {
 	if (RIGHT - LEFT < 1) return;
 
 	const int MIDDLE = (LEFT + RIGHT) / 2;
@@ -20,10 +20,10 @@ void MergeSort::mergeSort(std::vector<int>* theArray, const int LEFT, const int 
 	merge(theArray, LEFT, RIGHT);
 }
 
-void MergeSort::merge(std::vector<int>* theArray, const int LEFT, const int RIGHT) {
+void MergeSort::merge(StaticOperations::pIntVec theArray, const int LEFT, const int RIGHT) {
 	const int MIDDLE = (LEFT + RIGHT) / 2;
 
-	std::vector<int>* mergedArray = new std::vector<int>(*theArray);
+	StaticOperations::pIntVec mergedArray = std::make_shared<std::vector<int>>(*theArray);
 
 	int leftPos = LEFT;
 	int rightPos = MIDDLE + 1;
@@ -60,5 +60,4 @@ void MergeSort::merge(std::vector<int>* theArray, const int LEFT, const int RIGH
 		(*theArray)[i] =  mergedArray->at(i);
 	}
 
-	delete mergedArray;
 }

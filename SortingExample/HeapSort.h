@@ -1,7 +1,8 @@
 #pragma once
 
 #include "stdafx.h"
-#include <vector>
+
+#include "StaticOperations.h"
 
 class HeapSort
 {
@@ -9,6 +10,6 @@ public:
 	HeapSort() {};
 	~HeapSort() {};
 
-	static void sort(std::vector<int>* theArray);
+	static void sort(StaticOperations::pIntVec theArray);
 };
 

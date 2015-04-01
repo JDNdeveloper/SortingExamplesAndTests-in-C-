@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "SelectionSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 
-void SelectionSort::sort(std::vector<int>* theArray) {
+
+void SelectionSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 	
 	

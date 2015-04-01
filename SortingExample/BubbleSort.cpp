@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "BubbleSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 
-void BubbleSort::sort(std::vector<int>* theArray) {
+
+void BubbleSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 
 	for (unsigned i = 0; i < theArray->size(); i++) {

@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <time.h>
+#include <memory>
 
 #include "../SortingExample/SelectionSort.h"
 #include "../SortingExample/InsertionSort.h"
@@ -15,7 +16,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-typedef std::vector<int>* pIntVec;
+typedef std::shared_ptr<std::vector<int>> pIntVec;
 
 namespace SortingExampleTest
 {
@@ -124,13 +125,13 @@ namespace SortingExampleTest
 			unsigned int time_ui = unsigned int(time(NULL));
 			srand(time_ui);
 
-			pIntVec theArray = new std::vector<int>(SIZE);
+			pIntVec theArray = std::make_shared<std::vector<int>>(SIZE);
 
 			for (int i = 0; i < NUMBER_OF_TEST_INPUTS; i++)
 			{
 				generateArray(theArray, SIZE);
 
-				pIntVec perfectArray = new std::vector<int>(*theArray);
+				pIntVec perfectArray = std::make_shared<std::vector<int>>(*theArray);
 
 				std::sort(perfectArray->begin(), perfectArray->end());
 
@@ -141,10 +142,8 @@ namespace SortingExampleTest
 					runAllSorts(perfectArray, theArray);
 				}
 
-				delete perfectArray;
 			}
 
-			delete theArray;
 		}
 
 		void runAllSorts(pIntVec perfectArray, pIntVec theArray) {
@@ -152,19 +151,18 @@ namespace SortingExampleTest
 			{
 				//Logger::WriteMessage("Inside of sort loop\n");
 
-				pIntVec tempArray = new std::vector<int>(*theArray);
+				pIntVec tempArray = std::make_shared<std::vector<int>>(*theArray);
 
 				runProperSort((SortType)sortType, tempArray);
 
 				Assert::AreEqual(*perfectArray, *tempArray);
 				
-				delete tempArray;
 			}
 		}
 
 		TEST_METHOD(TestGenerateArray) {
 			for (int j = 0; j < SAMPLE_SIZE; j++) {
-				pIntVec testArray = new std::vector<int>();
+				pIntVec testArray = std::make_shared<std::vector<int>>();
 
 				generateArray(testArray, SIZE);
 
@@ -175,18 +173,17 @@ namespace SortingExampleTest
 					Assert::IsTrue(value <= UPPER_BOUND && value >= LOWER_BOUND, L"Values are not in proper range");
 				}
 
-				delete testArray;
 			}
 		}
 
 		TEST_METHOD(TestRandomizeArray) {
 			for (int i = 0; i < SAMPLE_SIZE; i++) {
-				pIntVec testArray = new std::vector<int>();
+				pIntVec testArray = std::make_shared<std::vector<int>>();
 				testArray->push_back(5);
 				testArray->push_back(3);
 				testArray->push_back(2);
 				testArray->push_back(7);
-				pIntVec inputArray = new std::vector<int>(*testArray);
+				pIntVec inputArray = std::make_shared<std::vector<int>>(*testArray);
 
 				randomizeArray(inputArray);
 
@@ -197,8 +194,6 @@ namespace SortingExampleTest
 
 				Assert::AreEqual(*testArray, *inputArray, L"Arrays are not equal");
 
-				delete testArray;
-				delete inputArray;
 			}
 		}
 

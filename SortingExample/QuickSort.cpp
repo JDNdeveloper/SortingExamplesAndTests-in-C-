@@ -1,15 +1,15 @@
 #include "stdafx.h"
 #include "QuickSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 
-void QuickSort::sort(std::vector<int>* theArray) {
+
+void QuickSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 
 	quickSort(theArray, 0, theArray->size() - 1);
 }
 
-void QuickSort::quickSort(std::vector<int>* theArray, const int LEFT, const int RIGHT) {
+void QuickSort::quickSort(StaticOperations::pIntVec theArray, const int LEFT, const int RIGHT) {
 	if (RIGHT - LEFT < 1) return;
 
 	//int partitionPosition = partition(theArray, LEFT, RIGHT);
@@ -19,14 +19,14 @@ void QuickSort::quickSort(std::vector<int>* theArray, const int LEFT, const int 
 	quickSort(theArray, partitionPosition + 1, RIGHT);
 }
 
-int QuickSort::partition(std::vector<int>* theArray, const int LEFT, const int RIGHT) {
+int QuickSort::partition(StaticOperations::pIntVec theArray, const int LEFT, const int RIGHT) {
 
 	const int MIDDLE = (LEFT + RIGHT) / 2;
 	int pivotValue = medianOfThree(theArray->at(LEFT), theArray->at(MIDDLE), theArray->at(RIGHT));
 	int pivot = getPivotPositionFromValue(theArray, LEFT, MIDDLE, RIGHT, pivotValue);
 
-	std::vector<int>* leftPartition = new std::vector<int>();
-	std::vector<int>* rightPartition = new std::vector<int>();
+	StaticOperations::pIntVec leftPartition = std::make_shared<std::vector<int>>();
+	StaticOperations::pIntVec rightPartition = std::make_shared<std::vector<int>>();
 
 	for (int i = LEFT; i <= RIGHT; i++) {
 		if (i == pivot) {
@@ -56,13 +56,10 @@ int QuickSort::partition(std::vector<int>* theArray, const int LEFT, const int R
 		pos++;
 	}
 
-	delete leftPartition;
-	delete rightPartition;
-
 	return pivot;
 }
 
-int QuickSort::partitionInPlace(std::vector<int>* theArray, const int LEFT, const int RIGHT) {
+int QuickSort::partitionInPlace(StaticOperations::pIntVec theArray, const int LEFT, const int RIGHT) {
 
 	const int MIDDLE = (LEFT + RIGHT) / 2;
 	int pivotValue = medianOfThree(theArray->at(LEFT), theArray->at(MIDDLE), theArray->at(RIGHT));
@@ -84,7 +81,7 @@ int QuickSort::partitionInPlace(std::vector<int>* theArray, const int LEFT, cons
 	return storeIndex;
 }
 
-int QuickSort::getPivotPositionFromValue(std::vector<int>* theArray, int pos1, int pos2, int pos3, int pivotValue) {
+int QuickSort::getPivotPositionFromValue(StaticOperations::pIntVec theArray, int pos1, int pos2, int pos3, int pivotValue) {
 	if (theArray->at(pos1) == pivotValue) {
 		return pos1;
 	}

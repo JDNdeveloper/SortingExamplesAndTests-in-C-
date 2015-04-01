@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "InsertionSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 
-void InsertionSort::sort(std::vector<int>* theArray) {
+
+void InsertionSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 
 	for (unsigned i = 1; i < theArray->size(); i++) {

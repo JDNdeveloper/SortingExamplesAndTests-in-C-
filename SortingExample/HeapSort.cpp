@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "HeapSort.h"
 #include "StaticOperations.h"
-#include <algorithm>
 #include <queue>
 
-void HeapSort::sort(std::vector<int>* theArray) {
+
+void HeapSort::sort(StaticOperations::pIntVec theArray) {
 	//std::sort(theArray->begin(), theArray->end());
 
 	std::priority_queue<int> heap;

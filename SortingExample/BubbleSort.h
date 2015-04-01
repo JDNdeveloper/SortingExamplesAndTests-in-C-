@@ -1,7 +1,8 @@
 #pragma once
 
 #include "stdafx.h"
-#include <vector>
+
+#include "StaticOperations.h"
 
 class BubbleSort
 {
@@ -9,6 +10,6 @@ class BubbleSort
 		BubbleSort() {};
 		~BubbleSort() {};
 
-		static void sort(std::vector<int>* theArray);
+		static void sort(StaticOperations::pIntVec theArray);
 };
 

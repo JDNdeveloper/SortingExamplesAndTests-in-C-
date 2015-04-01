@@ -1,7 +1,8 @@
 #pragma once
 
 #include "stdafx.h"
-#include <vector>
+
+#include "StaticOperations.h"
 
 class InsertionSort 
 {
@@ -9,5 +10,5 @@ class InsertionSort
 		InsertionSort() {};
 		~InsertionSort() {};
 
-		static void sort(std::vector<int>* theArray);
+		static void sort(StaticOperations::pIntVec theArray);
 };
